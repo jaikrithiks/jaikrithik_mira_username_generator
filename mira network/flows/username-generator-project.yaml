@@ -1,0 +1,58 @@
+# Version format ex. "0.0.1"
+version: "0.0.1"                            # Flow specification version
+
+# Basic metadata for the agent
+metadata:
+  name: "Username-generator-project"                               # Unique identifier
+  description: "a flow that generate suitable usernames for you"       # Flow purpose
+  author: "JaiKrithik"                              # Must match your account username
+  tags: ["username", "name", "nlp"]                       # Keywords for categorization
+  private: false                                       # Access control setting
+
+# Define the input variables required
+inputs:
+  text1:                                              # First input parameter
+    type: string                                       # Currently only String format
+    description: "your name"
+    required: true
+    example: "jai krithik"
+
+  text2:                                              # Second input parameter
+    type: string                                       # Currently only String format
+    description: "purpose"
+    required: true
+    example: "github"
+
+
+# LLM configuration
+model:
+  provider: "anthropic"                            # e.g., anthropic, openai, meta, etc.
+  name: "claude-3.5-sonnet"                           # Specific model identifier
+
+# Prompt template configuration
+prompt: |
+  You are a username generator.You have to generate a suitable username for a given purpose using the name provided by user.
+
+  Name of user:
+  {text1}
+
+  Purpose:
+  {text2}
+
+  Please provide a suitable username for the name.
+
+# ReadME configuration
+readme: |
+  # Username generator
+
+  This flow takes a name and a purpose and gives a username for specified purpose.
+
+  ## Usage
+  1. Input your name in the `text1` parameter
+  2. Input your purpose in the 'text2' parameter
+  3. The flow will process your text1 and text2 using Claude-2
+  4. You'll receive a concise summary as output
+
+  ## Example
+  Input: A name and purpose
+  Output: A suitable username for the purpose given.
